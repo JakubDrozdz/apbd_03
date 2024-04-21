@@ -1,10 +1,15 @@
 namespace apbd_03;
 
-public class Animal
+public class Animal : AnimalModel
 {
     public int IdAnimal { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public string Category { get; set; }
-    public string Area { get; set; }
+
+    public Animal():base()
+    {
+        
+    }
+    public Animal(AnimalModel animalModel, int animalId) : base(animalModel)
+    {
+        IdAnimal = animalId;
+    }
 }

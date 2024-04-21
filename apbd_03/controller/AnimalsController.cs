@@ -23,4 +23,26 @@ public class AnimalsController : ControllerBase
         var animals = _animalsService.GetAnimals(orderBy);
         return Ok(animals);
     }
+    
+    [HttpPost]
+    public IActionResult CreateAnimal(AnimalModel animal)
+    {
+        int createdAnimalId = _animalsService.CreateAnimal(animal);
+        Animal createdAniaml = new Animal(animal, createdAnimalId);
+        return Created("api/animals/" + createdAnimalId, createdAniaml);
+    }
+    
+    [HttpPut("{idAnimal:int}")]
+    public IActionResult UpdateAnimal(int idAnimal, AnimalModel animalModel)
+    {
+        var updatedObjects = _animalsService.UpdateAnimal(idAnimal, animalModel);
+        return NoContent();
+    }
+    
+    [HttpDelete("{idAnimal:int}")]
+    public IActionResult DeleteAnimal(int idAnimal)
+    {
+        var updatedObjects = _animalsService.DeleteAnimal(idAnimal);
+        return NoContent();
+    }
 }
