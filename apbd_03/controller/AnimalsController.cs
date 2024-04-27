@@ -36,13 +36,21 @@ public class AnimalsController : ControllerBase
     public IActionResult UpdateAnimal(int idAnimal, AnimalModel animalModel)
     {
         var updatedObjects = _animalsService.UpdateAnimal(idAnimal, animalModel);
-        return NoContent();
+        if (updatedObjects == 0)
+        {
+            return NoContent(); 
+        }
+        return Ok("Row updated");
     }
     
     [HttpDelete("{idAnimal:int}")]
     public IActionResult DeleteAnimal(int idAnimal)
     {
         var updatedObjects = _animalsService.DeleteAnimal(idAnimal);
-        return NoContent();
+        if (updatedObjects == 0)
+        {
+            return NoContent(); 
+        }
+        return Ok("Row deleted");
     }
 }
